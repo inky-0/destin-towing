@@ -22,29 +22,32 @@ export function Nav({ brand, links, cta }: Props) {
   return (
     <nav
       className={cn(
-        "fixed top-0 inset-x-0 z-50 h-[72px] flex items-center px-6 sm:px-10 transition-colors",
-        scrolled ? "bg-[var(--bg)]/85 backdrop-blur-md border-b border-white/5" : "bg-transparent",
+        "fixed top-0 inset-x-0 z-50 h-[88px] flex items-center px-6 sm:px-10 transition-colors",
+        scrolled ? "bg-[var(--bg)]/90 backdrop-blur-md border-b border-white/5" : "bg-transparent",
       )}
     >
-      <div className="flex-1 flex items-center gap-3">
-        <a
-          href="#home"
-          className="brand-wordmark text-2xl sm:text-[28px] text-white whitespace-nowrap leading-none"
-        >
-          {brand}
-        </a>
-      </div>
-      <div className="hidden md:flex items-center gap-8 text-sm text-white/70">
+      {/* Left: nav links */}
+      <div className="flex-1 hidden md:flex items-center gap-8 text-sm text-white/70">
         {links.map((l) => (
           <a key={l.href} href={l.href} className="hover:text-white transition">
             {l.label}
           </a>
         ))}
       </div>
-      <div className="flex-1 flex items-center justify-end">
+
+      {/* Center: brand wordmark — absolute-centered so it's not pushed by side widths */}
+      <a
+        href="#home"
+        className="brand-wordmark absolute left-1/2 -translate-x-1/2 text-3xl sm:text-[40px] text-white whitespace-nowrap leading-none"
+      >
+        {brand}
+      </a>
+
+      {/* Right: CTA */}
+      <div className="flex-1 flex items-center justify-end ml-auto">
         <a
           href={cta.href}
-          className="rounded-full bg-[var(--accent)] text-black text-xs sm:text-sm font-bold uppercase tracking-wider px-4 sm:px-5 py-2.5 hover:opacity-90 transition"
+          className="rounded-full bg-[var(--accent)] text-white text-xs sm:text-sm font-bold uppercase tracking-wider px-5 py-3 hover:bg-[var(--accent-light)] transition shadow-[0_4px_20px_rgba(204,17,17,0.35)]"
         >
           {cta.label}
         </a>
