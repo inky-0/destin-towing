@@ -61,7 +61,7 @@ export function Hero({ tag, title, sub, primaryCta, secondaryCta, bgImage, stats
     <section
       ref={heroRef}
       id="home"
-      className="relative min-h-[88vh] flex items-center overflow-hidden px-6 sm:px-10 py-32 sm:py-40"
+      className="relative min-h-[88vh] flex items-center justify-center overflow-hidden px-6 sm:px-10 py-32 sm:py-40 text-center"
     >
       <div
         ref={bgRef}
@@ -70,13 +70,12 @@ export function Hero({ tag, title, sub, primaryCta, secondaryCta, bgImage, stats
           backgroundImage: `url(${bgImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          filter: "brightness(0.55) contrast(1.05)",
+          filter: "brightness(0.45) contrast(1.05)",
         }}
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-[var(--bg)]/95 via-[var(--bg)]/75 to-[var(--bg)]/30" />
-      <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg)] via-transparent to-[var(--bg)]/40" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[var(--bg)]/85 via-[var(--bg)]/70 to-[var(--bg)]/95" />
 
-      <div className="relative max-w-[760px] w-full">
+      <div className="relative max-w-[820px] w-full mx-auto flex flex-col items-center">
         {tag && (
           <div className="hero-tag-pill inline-flex items-center gap-2 bg-[var(--accent)]/12 border border-[var(--accent)]/30 text-[var(--accent-light,var(--accent))] uppercase tracking-widest text-xs font-bold px-4 py-1.5 rounded-full mb-6">
             <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-light,var(--accent))]" />
@@ -87,10 +86,10 @@ export function Hero({ tag, title, sub, primaryCta, secondaryCta, bgImage, stats
             style={{ fontSize: "clamp(2.4rem, 6vw, 3.6rem)" }}>
           {title}
         </h1>
-        <p className="hero-sub text-white/75 text-base sm:text-lg max-w-xl leading-relaxed mb-9">
+        <p className="hero-sub text-white/75 text-base sm:text-lg max-w-xl mx-auto leading-relaxed mb-9">
           {sub}
         </p>
-        <div className="hero-cta flex flex-wrap gap-3.5">
+        <div className="hero-cta flex flex-wrap justify-center gap-3.5">
           <MagneticButton
             asLink
             href={primaryCta.href}
@@ -110,9 +109,9 @@ export function Hero({ tag, title, sub, primaryCta, secondaryCta, bgImage, stats
         </div>
 
         {stats && stats.length > 0 && (
-          <div className="hero-stats mt-14 pt-9 flex flex-wrap gap-x-10 gap-y-6 border-t border-[var(--accent)]/15 max-w-xl">
+          <div className="hero-stats mt-14 pt-9 flex flex-wrap justify-center gap-x-12 gap-y-6 border-t border-[var(--accent)]/15 w-full max-w-xl mx-auto">
             {stats.map((s) => (
-              <div key={s.label} className="hero-stat">
+              <div key={s.label} className="hero-stat text-center">
                 <div className="text-3xl sm:text-[2rem] font-extrabold text-white tracking-tight leading-none">{s.value}</div>
                 <div className="text-[13px] text-white/45 mt-1.5">{s.label}</div>
               </div>
