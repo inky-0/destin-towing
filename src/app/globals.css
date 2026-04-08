@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+:root {
+  /* Destin Towing — black + emergency red */
+  --bg:           #0a0a0a;
+  --surface:      #111111;
+  --surface-2:    #181818;
+  --border:       rgba(255, 255, 255, 0.08);
+  --text:         #ffffff;
+  --text-mute:    #999999;
+  --accent:       #cc1111;
+  --accent-light: #ef4444;
+}
+
+@theme inline {
+  --color-bg:           var(--bg);
+  --color-surface:      var(--surface);
+  --color-surface-2:    var(--surface-2);
+  --color-text:         var(--text);
+  --color-text-mute:    var(--text-mute);
+  --color-accent:       var(--accent);
+  --color-accent-light: var(--accent-light);
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
+}
+
+::selection {
+  background: var(--accent);
+  color: #000;
+}
+
+@media (max-width: 640px) {
+  section { padding-top: 64px !important; padding-bottom: 64px !important; }
+}
