@@ -61,7 +61,7 @@ export function Hero({ tag, title, sub, primaryCta, secondaryCta, bgImage, stats
     <section
       ref={heroRef}
       id="home"
-      className="relative min-h-[100svh] sm:min-h-[88vh] flex items-center justify-center overflow-hidden px-5 sm:px-10 py-24 sm:py-40 text-center"
+      className="relative min-h-[100svh] sm:min-h-[88vh] flex items-center justify-center overflow-hidden px-5 sm:px-10 pt-36 pb-24 sm:py-40 text-center"
     >
       <div
         ref={bgRef}
