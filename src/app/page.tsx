@@ -3,17 +3,19 @@
 import { Nav } from "@/components/sections/Nav";
 import { Hero } from "@/components/sections/Hero";
 import { ServicesGrid } from "@/components/sections/ServicesGrid";
-import { CallBand } from "@/components/sections/CallBand";
+import { Gallery } from "@/components/sections/Gallery";
+import { WhyChooseSplit } from "@/components/sections/WhyChooseSplit";
+import { CtaBanner } from "@/components/sections/CtaBanner";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { Footer } from "@/components/sections/Footer";
 import {
   Truck,
   ShieldAlert,
-  Wrench,
   Anchor,
   MoveHorizontal,
   Warehouse,
+  Wrench,
 } from "lucide-react";
 
 const PHONE_DISPLAY = "(850) 737-1738";
@@ -29,28 +31,30 @@ export default function Home() {
         brand="DESTIN TOWING"
         links={[
           { href: "#services", label: "Services" },
+          { href: "#work", label: "Our Work" },
           { href: "#why", label: "Why Us" },
           { href: "#contact", label: "Contact" },
         ]}
-        cta={{ href: PHONE_TEL, label: "Call Now" }}
+        cta={{ href: PHONE_TEL, label: "Call (850) 737-1738" }}
       />
 
       <Hero
         tag="Destin's Reliable Towing & Roadside Service"
         title={
           <>
-            Fast Response.{" "}
-            <span className="text-[var(--accent)] italic">Fair Prices.</span>
-            <br />
-            Always Available.
+            <span className="block">Fast Response.</span>
+            <span className="block">
+              <span className="text-[var(--accent-light)]">Fair Prices.</span>
+            </span>
+            <span className="block">Always Available.</span>
           </>
         }
-        sub="From a simple breakdown to a major recovery — Destin Towing has the trucks, the equipment, and the experience to handle any call on the Emerald Coast. 24/7 dispatch, local crews, no surprises."
+        sub="Destin Towing has the trucks, the equipment, and the experience to handle any call on the Emerald Coast — from a simple jump start to a major heavy-duty recovery. 24/7 dispatch, local crews, no surprises."
         primaryCta={{ href: PHONE_TEL, label: "Call (850) 737-1738" }}
-        secondaryCta={{ href: "#services", label: "See Our Services" }}
+        secondaryCta={{ href: "#work", label: "See Our Work" }}
         bgImage="/hero-bg.jpg"
         stats={[
-          { value: "24/7", label: "Dispatch" },
+          { value: "24/7", label: "Dispatch Available" },
           { value: "10+", label: "Years on the Coast" },
           { value: "5★", label: "Local Reviews" },
         ]}
@@ -60,7 +64,7 @@ export default function Home() {
         id="services"
         tag="What We Do"
         title="Full Towing & Recovery for Destin & the Emerald Coast"
-        sub="One call, one crew. From everyday tows to heavy-duty recoveries, we handle every job in-house."
+        sub="One call, one crew. From everyday tows to heavy-duty recoveries, we handle every job in-house with the right truck for the job."
         services={[
           {
             icon: Truck,
@@ -101,36 +105,53 @@ export default function Home() {
         ]}
       />
 
-      <CallBand
-        title="Need a tow right now?"
-        phoneLabel="Call (850) 737-1738"
-        phoneHref={PHONE_TEL}
+      <Gallery
+        id="work"
+        tag="Our Work"
+        title={
+          <>
+            On the road across <span className="text-[var(--accent-light)]">the Emerald Coast</span>
+          </>
+        }
+        sub="Every job is different — here are some of the recoveries, tows, and roadside calls our team has handled recently."
+        images={[
+          { src: "/work-1.jpg", alt: "Destin Towing recovery job" },
+          { src: "/work-2.jpg", alt: "Flatbed transport" },
+          { src: "/work-3.jpg", alt: "Heavy-duty wrecker on scene" },
+          { src: "/work-4.jpg", alt: "Roadside assistance" },
+          { src: "/work-5.jpg", alt: "Local towing in Destin" },
+        ]}
       />
 
-      <ServicesGrid
+      <WhyChooseSplit
         id="why"
         tag="Why Destin Calls Us First"
-        title="Fast. Reliable. Fair Prices — every time."
+        title={
+          <>
+            Fast. <span className="text-[var(--accent-light)]">Reliable.</span> Fair prices —{" "}
+            <span className="text-[var(--accent-light)]">every time.</span>
+          </>
+        }
         sub="We're a local Destin business that's been serving the Emerald Coast for over a decade. No shady upcharges, no out-of-town dispatchers, no excuses."
-        columns={3}
-        services={[
+        image="/shop.jpg"
+        imageAlt="Destin Towing shop"
+        badge={{ big: "10+", small: "Years Serving Destin" }}
+        items={[
           {
-            icon: Wrench,
-            name: "Local Crews",
-            description:
-              "Our drivers live here. They know every road from Sandestin to Fort Walton — and they get to you fast.",
+            title: "Local Crews",
+            body: "Our drivers live here. They know every road from Sandestin to Fort Walton — and they get to you fast.",
           },
           {
-            icon: ShieldAlert,
-            name: "Honest Pricing",
-            description:
-              "Quoted up front. No surprise fees, no inflated mileage, no 'after-hours' tricks. Same fair rate, every call.",
+            title: "Honest Pricing",
+            body: "Quoted up front. No surprise fees, no inflated mileage, no 'after-hours' tricks. Same fair rate, every call.",
           },
           {
-            icon: Truck,
-            name: "Right Truck, Every Job",
-            description:
-              "Light-duty wreckers, flatbed rollbacks, GoJacks, and a heavy-duty wrecker — we own the equipment, so we don't pass costs through.",
+            title: "Right Truck, Every Job",
+            body: "Light-duty wreckers, flatbed rollbacks, GoJacks, and a heavy-duty wrecker — we own the equipment, so we don't pass costs through.",
+          },
+          {
+            title: "Available 24/7",
+            body: "Dispatch never sleeps. Whether it's noon on Tuesday or 3am on a holiday weekend, we'll pick up and roll out.",
           },
         ]}
       />
@@ -140,7 +161,7 @@ export default function Home() {
         tag="What Our Customers Say"
         title={
           <>
-            Trusted by <span className="text-[var(--accent)] italic">Destin locals</span> & visitors
+            Trusted by <span className="text-[var(--accent-light)]">Destin locals</span> &amp; visitors alike
           </>
         }
         items={[
@@ -165,16 +186,22 @@ export default function Home() {
         ]}
       />
 
+      <CtaBanner
+        title="Need a tow right now?"
+        sub="Our dispatch line is open 24/7. Call now and we'll roll a truck out within minutes."
+        cta={{ href: PHONE_TEL, label: "Call (850) 737-1738" }}
+      />
+
       <ContactSection
         id="contact"
         tag="Get In Touch"
         title={
           <>
             Need a tow or have a question?{" "}
-            <span className="text-[var(--accent)] italic">We're here.</span>
+            <span className="text-[var(--accent-light)] italic">We&apos;re here.</span>
           </>
         }
-        sub="Call us 24/7 for emergency dispatch, or stop by the shop during business hours for anything non-urgent."
+        sub="Call us 24/7 for emergency dispatch, or fill out the form and we'll get back to you with a free quote."
         phone={PHONE_DISPLAY}
         email="destintowing@gmail.com"
         address={ADDRESS}
@@ -204,6 +231,7 @@ export default function Home() {
             title: "Company",
             links: [
               { href: "#why", label: "Why Choose Us" },
+              { href: "#work", label: "Our Work" },
               { href: "#reviews", label: "Reviews" },
               { href: "#contact", label: "Contact" },
             ],

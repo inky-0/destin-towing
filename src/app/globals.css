@@ -49,6 +49,4 @@ body {
 
 @media (max-width: 640px) {
   section { padding-top: 64px !important; padding-bottom: 64px !important; }
-  /* Smaller centered brand on phones so it doesn't crash into the CTA */
-  nav .brand-wordmark { font-size: 22px !important; }
 }

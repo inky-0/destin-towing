@@ -110,11 +110,11 @@ export function Hero({ tag, title, sub, primaryCta, secondaryCta, bgImage, stats
         </div>
 
         {stats && stats.length > 0 && (
-          <div className="hero-stats mt-12 flex flex-wrap gap-x-10 gap-y-6">
+          <div className="hero-stats mt-14 pt-9 flex flex-wrap gap-x-10 gap-y-6 border-t border-[var(--accent)]/15 max-w-xl">
             {stats.map((s) => (
               <div key={s.label} className="hero-stat">
-                <div className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">{s.value}</div>
-                <div className="text-xs uppercase tracking-widest text-white/55 mt-1">{s.label}</div>
+                <div className="text-3xl sm:text-[2rem] font-extrabold text-white tracking-tight leading-none">{s.value}</div>
+                <div className="text-[13px] text-white/45 mt-1.5">{s.label}</div>
               </div>
             ))}
           </div>

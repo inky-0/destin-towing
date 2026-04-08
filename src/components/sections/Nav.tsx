@@ -11,6 +11,7 @@ type Props = {
 
 export function Nav({ brand, links, cta }: Props) {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -20,38 +21,77 @@ export function Nav({ brand, links, cta }: Props) {
   }, []);
 
   return (
-    <nav
-      className={cn(
-        "fixed top-0 inset-x-0 z-50 h-[88px] flex items-center px-6 sm:px-10 transition-colors",
-        scrolled ? "bg-[var(--bg)]/90 backdrop-blur-md border-b border-white/5" : "bg-transparent",
-      )}
-    >
-      {/* Left: nav links */}
-      <div className="flex-1 hidden md:flex items-center gap-8 text-sm text-white/70">
-        {links.map((l) => (
-          <a key={l.href} href={l.href} className="hover:text-white transition">
-            {l.label}
-          </a>
-        ))}
-      </div>
-
-      {/* Center: brand wordmark — absolute-centered so it's not pushed by side widths */}
-      <a
-        href="#home"
-        className="brand-wordmark absolute left-1/2 -translate-x-1/2 text-3xl sm:text-[40px] text-white whitespace-nowrap leading-none"
+    <>
+      <nav
+        className={cn(
+          "fixed top-0 inset-x-0 z-50 h-[70px] flex items-center justify-between px-6 sm:px-10 transition-colors",
+          scrolled
+            ? "bg-[var(--bg)]/92 backdrop-blur-md border-b border-[var(--accent)]/12"
+            : "bg-[var(--bg)]/70 backdrop-blur-md border-b border-[var(--accent)]/12",
+        )}
       >
-        {brand}
-      </a>
-
-      {/* Right: CTA */}
-      <div className="flex-1 flex items-center justify-end ml-auto">
+        {/* Brand — left aligned */}
         <a
-          href={cta.href}
-          className="rounded-full bg-[var(--accent)] text-white text-xs sm:text-sm font-bold uppercase tracking-wider px-5 py-3 hover:bg-[var(--accent-light)] transition shadow-[0_4px_20px_rgba(204,17,17,0.35)]"
+          href="#home"
+          className="brand-wordmark text-2xl sm:text-[28px] text-white leading-none whitespace-nowrap"
         >
-          {cta.label}
+          {brand}
         </a>
-      </div>
-    </nav>
+
+        {/* Center links (desktop only) */}
+        <ul className="hidden md:flex items-center gap-8 text-sm text-white/65 list-none">
+          {links.map((l) => (
+            <li key={l.href}>
+              <a href={l.href} className="hover:text-[var(--accent-light)] transition">
+                {l.label}
+              </a>
+            </li>
+          ))}
+          <li>
+            <a
+              href={cta.href}
+              className="bg-[var(--accent)] text-white px-5 py-2.5 rounded-md font-semibold text-sm hover:bg-[var(--accent-light)] transition shadow-[0_4px_18px_rgba(204,17,17,0.35)]"
+            >
+              {cta.label}
+            </a>
+          </li>
+        </ul>
+
+        {/* Mobile: just the CTA + hamburger */}
+        <div className="flex md:hidden items-center gap-3">
+          <a
+            href={cta.href}
+            className="bg-[var(--accent)] text-white px-3.5 py-2 rounded-md font-semibold text-xs hover:bg-[var(--accent-light)] transition"
+          >
+            {cta.label}
+          </a>
+          <button
+            onClick={() => setMenuOpen((o) => !o)}
+            aria-label="Menu"
+            className="flex flex-col gap-1.5 p-1.5"
+          >
+            <span className={cn("block w-6 h-0.5 bg-white transition-transform", menuOpen && "translate-y-2 rotate-45")} />
+            <span className={cn("block w-6 h-0.5 bg-white transition-opacity", menuOpen && "opacity-0")} />
+            <span className={cn("block w-6 h-0.5 bg-white transition-transform", menuOpen && "-translate-y-2 -rotate-45")} />
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile menu drawer */}
+      {menuOpen && (
+        <div className="fixed top-[70px] inset-x-0 z-40 bg-[var(--bg)] border-b border-[var(--accent)]/12 px-6 py-6 md:hidden flex flex-col gap-4">
+          {links.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              onClick={() => setMenuOpen(false)}
+              className="text-white text-base font-medium hover:text-[var(--accent-light)] transition"
+            >
+              {l.label}
+            </a>
+          ))}
+        </div>
+      )}
+    </>
   );
 }
