@@ -61,7 +61,7 @@ export function Hero({ tag, title, sub, primaryCta, secondaryCta, bgImage, stats
     <section
       ref={heroRef}
       id="home"
-      className="relative min-h-[88vh] flex items-center justify-center overflow-hidden px-6 sm:px-10 py-32 sm:py-40 text-center"
+      className="relative min-h-[100svh] sm:min-h-[88vh] flex items-center justify-center overflow-hidden px-5 sm:px-10 py-24 sm:py-40 text-center"
     >
       <div
         ref={bgRef}
@@ -82,18 +82,18 @@ export function Hero({ tag, title, sub, primaryCta, secondaryCta, bgImage, stats
             {tag}
           </div>
         )}
-        <h1 className="hero-title text-white font-extrabold leading-[1.05] tracking-tight mb-5"
-            style={{ fontSize: "clamp(2.4rem, 6vw, 3.6rem)" }}>
+        <h1 className="hero-title text-white font-extrabold leading-[1.1] tracking-tight mb-5"
+            style={{ fontSize: "clamp(2rem, 8vw, 3.6rem)" }}>
           {title}
         </h1>
         <p className="hero-sub text-white/75 text-base sm:text-lg max-w-xl mx-auto leading-relaxed mb-9">
           {sub}
         </p>
-        <div className="hero-cta flex flex-wrap justify-center gap-3.5">
+        <div className="hero-cta w-full flex flex-col sm:flex-row sm:flex-wrap sm:justify-center gap-2.5 sm:gap-3.5 max-w-md sm:max-w-none mx-auto">
           <MagneticButton
             asLink
             href={primaryCta.href}
-            className="bg-[var(--accent)] text-black hover:bg-[var(--accent-light,var(--accent))] shadow-[0_4px_24px_rgba(0,0,0,0.4)]"
+            className="bg-[var(--accent)] text-white hover:bg-[var(--accent-light)] shadow-[0_4px_24px_rgba(204,17,17,0.4)] !w-full sm:!w-auto !rounded-[10px] sm:!rounded-lg !py-4 sm:!py-3.5"
           >
             {primaryCta.label}
           </MagneticButton>
@@ -101,7 +101,7 @@ export function Hero({ tag, title, sub, primaryCta, secondaryCta, bgImage, stats
             <MagneticButton
               asLink
               href={secondaryCta.href}
-              className="border-2 border-[var(--accent)]/40 text-[var(--accent-light,var(--accent))] bg-transparent"
+              className="border-2 border-[var(--accent)]/40 text-[var(--accent-light)] bg-transparent !w-full sm:!w-auto !rounded-[10px] sm:!rounded-lg !py-4 sm:!py-3.5"
             >
               {secondaryCta.label}
             </MagneticButton>
@@ -109,11 +109,20 @@ export function Hero({ tag, title, sub, primaryCta, secondaryCta, bgImage, stats
         </div>
 
         {stats && stats.length > 0 && (
-          <div className="hero-stats mt-14 pt-9 flex flex-wrap justify-center gap-x-12 gap-y-6 border-t border-[var(--accent)]/15 w-full max-w-xl mx-auto">
-            {stats.map((s) => (
-              <div key={s.label} className="hero-stat text-center">
-                <div className="text-3xl sm:text-[2rem] font-extrabold text-white tracking-tight leading-none">{s.value}</div>
-                <div className="text-[13px] text-white/45 mt-1.5">{s.label}</div>
+          <div className="hero-stats mt-9 sm:mt-14 pt-7 sm:pt-9 grid grid-cols-3 sm:flex sm:flex-wrap sm:justify-center gap-x-3 sm:gap-x-12 gap-y-4 border-t border-[var(--accent)]/15 w-full max-w-xl mx-auto">
+            {stats.map((s, i) => (
+              <div
+                key={s.label}
+                className={`hero-stat text-center px-2 ${
+                  i < stats.length - 1 ? "sm:border-r-0 border-r border-[var(--accent)]/15" : ""
+                }`}
+              >
+                <div className="text-2xl sm:text-[2rem] font-extrabold text-white tracking-tight leading-none">
+                  {s.value}
+                </div>
+                <div className="text-[10px] sm:text-[13px] text-white/45 mt-1.5 leading-tight">
+                  {s.label}
+                </div>
               </div>
             ))}
           </div>

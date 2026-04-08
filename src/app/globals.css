@@ -48,5 +48,8 @@ body {
 }
 
 @media (max-width: 640px) {
-  section { padding-top: 64px !important; padding-bottom: 64px !important; }
+  section { padding-top: 56px !important; padding-bottom: 56px !important; padding-left: 18px !important; padding-right: 18px !important; }
+}
+@media (max-width: 390px) {
+  section { padding-top: 48px !important; padding-bottom: 48px !important; padding-left: 16px !important; padding-right: 16px !important; }
 }

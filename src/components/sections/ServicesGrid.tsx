@@ -15,10 +15,11 @@ type Props = {
 };
 
 export function ServicesGrid({ id, tag, title, sub, services, columns = 3 }: Props) {
+  // Single column on phones (≤640px), expand on tablets+
   const gridCols =
-    columns === 2 ? "sm:grid-cols-2"
-    : columns === 4 ? "sm:grid-cols-2 lg:grid-cols-4"
-    : "sm:grid-cols-2 lg:grid-cols-3";
+    columns === 2 ? "md:grid-cols-2"
+    : columns === 4 ? "md:grid-cols-2 lg:grid-cols-4"
+    : "md:grid-cols-2 lg:grid-cols-3";
 
   return (
     <SectionShell id={id} tag={tag} title={title} sub={sub}>

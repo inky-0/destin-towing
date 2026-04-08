@@ -44,7 +44,7 @@ export function MagneticButton({
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
       className={cn(
-        "inline-flex items-center justify-center rounded-lg px-7 py-3.5 font-bold text-sm",
+        "flex w-full items-center justify-center rounded-lg px-7 py-3.5 font-bold text-sm",
         "transition-shadow duration-200",
         className,
       )}
@@ -54,6 +54,7 @@ export function MagneticButton({
     </motion.button>
   );
 
-  if (asLink && href) return <a href={href}>{Inner}</a>;
+  if (asLink && href)
+    return <a href={href} className="block w-full sm:w-auto">{Inner}</a>;
   return Inner;
 }
