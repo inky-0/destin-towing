@@ -20,7 +20,14 @@
   --color-text-mute:    var(--text-mute);
   --color-accent:       var(--accent);
   --color-accent-light: var(--accent-light);
-  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-display), "Bebas Neue", "Impact", sans-serif;
+}
+
+.brand-wordmark {
+  font-family: var(--font-display);
+  letter-spacing: 0.04em;
+  font-weight: 400;
 }
 
 * {

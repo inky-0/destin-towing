@@ -27,7 +27,10 @@ export function Nav({ brand, links, cta }: Props) {
       )}
     >
       <div className="flex-1 flex items-center gap-3">
-        <a href="#home" className="text-lg sm:text-xl font-bold tracking-tight text-white whitespace-nowrap">
+        <a
+          href="#home"
+          className="brand-wordmark text-2xl sm:text-[28px] text-white whitespace-nowrap leading-none"
+        >
           {brand}
         </a>
       </div>

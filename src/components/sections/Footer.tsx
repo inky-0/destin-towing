@@ -15,7 +15,7 @@ export function Footer({ brand, tagline, columns, contact }: Props) {
     <footer className="bg-[var(--surface)] border-t border-white/[0.07] mt-20">
       <div className="max-w-6xl mx-auto px-6 sm:px-10 py-12 sm:py-16 grid gap-12 grid-cols-1 md:grid-cols-4">
         <div className="md:col-span-1">
-          <div className="text-white text-xl font-extrabold tracking-tight mb-3">{brand}</div>
+          <div className="brand-wordmark text-white text-3xl mb-3 leading-none">{brand}</div>
           {tagline && <p className="text-white/55 text-sm leading-relaxed">{tagline}</p>}
         </div>
 

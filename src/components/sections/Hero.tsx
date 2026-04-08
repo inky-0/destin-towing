@@ -61,7 +61,7 @@ export function Hero({ tag, title, sub, primaryCta, secondaryCta, bgImage, stats
     <section
       ref={heroRef}
       id="home"
-      className="relative min-h-svh flex items-end overflow-hidden px-6 sm:px-10 pb-12 pt-32"
+      className="relative min-h-[88vh] flex items-center overflow-hidden px-6 sm:px-10 py-32 sm:py-40"
     >
       <div
         ref={bgRef}
@@ -70,12 +70,13 @@ export function Hero({ tag, title, sub, primaryCta, secondaryCta, bgImage, stats
           backgroundImage: `url(${bgImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          filter: "brightness(0.45)",
+          filter: "brightness(0.55) contrast(1.05)",
         }}
       />
-      <div className="absolute inset-0 bg-gradient-to-br from-[var(--bg)]/85 via-[var(--bg)]/60 to-[var(--bg)]/85" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[var(--bg)]/95 via-[var(--bg)]/75 to-[var(--bg)]/30" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg)] via-transparent to-[var(--bg)]/40" />
 
-      <div className="relative max-w-[720px]">
+      <div className="relative max-w-[760px] w-full">
         {tag && (
           <div className="hero-tag-pill inline-flex items-center gap-2 bg-[var(--accent)]/12 border border-[var(--accent)]/30 text-[var(--accent-light,var(--accent))] uppercase tracking-widest text-xs font-bold px-4 py-1.5 rounded-full mb-6">
             <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-light,var(--accent))]" />
