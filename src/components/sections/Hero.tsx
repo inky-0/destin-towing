@@ -77,7 +77,7 @@ export function Hero({ tag, title, sub, primaryCta, secondaryCta, bgImage, stats
 
       <div className="relative max-w-[820px] w-full mx-auto flex flex-col items-center">
         {tag && (
-          <div className="hero-tag-pill inline-flex items-center gap-2 bg-[var(--accent)]/12 border border-[var(--accent)]/30 text-[var(--accent-light,var(--accent))] uppercase tracking-widest text-xs font-bold px-4 py-1.5 rounded-full mb-6">
+          <div className="hero-tag-pill hidden sm:inline-flex items-center gap-2 bg-[var(--accent)]/12 border border-[var(--accent)]/30 text-[var(--accent-light,var(--accent))] uppercase tracking-widest text-xs font-bold px-4 py-1.5 rounded-full mb-6">
             <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-light,var(--accent))]" />
             {tag}
           </div>
