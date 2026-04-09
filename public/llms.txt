@@ -1,19 +1,14 @@
 # Destin Towing
 
-> Fast, reliable towing and roadside assistance serving Destin and the Emerald Coast. 24/7 dispatch, local crews, fair prices.
+> 24/7 towing, roadside assistance, flatbed, and heavy-duty recovery on the Emerald Coast. Local Destin business — fair prices, fast response. Call (850) 737-1738.
 
 ## Contact
 - Phone: (850) 737-1738
 - Email: destintowing@gmail.com
-- Address: 112 Mountain Dr, Destin, FL 32541, Destin, FL 32541
+- Address: 
 
 ## Services
-  - Local Towing
-  - Private Property Towing
-  - Flatbed & Rollback
-  - Heavy Duty Recovery
-  - GoJacks & Roadside
-  - Vehicle Storage
+
 
 ## Links
 - [Homepage](https://destin-towing-production.up.railway.app/)
