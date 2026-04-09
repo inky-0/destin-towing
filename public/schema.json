@@ -1,0 +1,70 @@
+{
+  "@context": "https://schema.org",
+  "@type": "TowingService",
+  "name": "Destin Towing",
+  "telephone": "(850) 737-1738",
+  "email": "destintowing@gmail.com",
+  "description": "Fast, reliable towing and roadside assistance serving Destin and the Emerald Coast. 24/7 dispatch, local crews, fair prices.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "112 Mountain Dr, Destin, FL 32541",
+    "addressLocality": "Destin",
+    "addressRegion": "FL",
+    "postalCode": "32541",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 30.3935,
+    "longitude": -86.4958
+  },
+  "openingHours": "Mo-Fr 08:00-17:00, Sa 08:00-14:00",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Local Towing"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Private Property Towing"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Flatbed & Rollback"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Heavy Duty Recovery"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "GoJacks & Roadside"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Vehicle Storage"
+        }
+      }
+    ]
+  }
+}
