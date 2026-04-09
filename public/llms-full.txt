@@ -4,7 +4,7 @@
 
 ## About Destin Towing
 
-Destin Towing is a TowingService located in Destin, FL. Fast, reliable towing and roadside assistance serving Destin and the Emerald Coast. 24/7 dispatch, local crews, fair prices.
+Destin Towing is located in Destin, FL. Fast, reliable towing and roadside assistance serving Destin and the Emerald Coast. 24/7 dispatch, local crews, fair prices.
 
 ## Contact Information
 
@@ -41,4 +41,4 @@ Destin Towing offers professional vehicle storage services in Destin, FL.
 Destin Towing serves Destin, FL and surrounding communities.
 
 ---
-*This information is maintained by Destin Towing. For the most up-to-date information, visit [our website](https://destin-towing-production.up.railway.app/).*
+*For the most up-to-date information, visit [our website](https://destin-towing-production.up.railway.app/).*
