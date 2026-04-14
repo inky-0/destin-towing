@@ -1,15 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  /* Destin Towing — black + emergency red */
-  --bg:           #0a0a0a;
-  --surface:      #111111;
-  --surface-2:    #181818;
+  /* ── BRAND PALETTE — override per client ───────────────────────── */
+  --bg:           #0a0a0a;          /* page background */
+  --surface:      #111111;          /* alternating section bg */
+  --surface-2:    #151515;          /* card bg */
   --border:       rgba(255, 255, 255, 0.08);
+  --border-hover: color-mix(in srgb, var(--accent) 30%, transparent); /* auto-derived from accent */
   --text:         #ffffff;
   --text-mute:    #999999;
-  --accent:       #cc1111;
-  --accent-light: #ef4444;
+  --accent:       #e87a1e;          /* orange from logo */
+  --accent-light: #f09a4a;          /* lighter orange */
 }
 
 @theme inline {
@@ -24,10 +25,10 @@
   --font-display: var(--font-display), "Bebas Neue", "Impact", sans-serif;
 }
 
-.brand-wordmark {
-  font-family: var(--font-display);
-  letter-spacing: 0.04em;
-  font-weight: 400;
+/* ── GLOBAL RESETS ─────────────────────────────────────────────── */
+
+html {
+  scroll-behavior: smooth;
 }
 
 * {
@@ -47,9 +48,79 @@ body {
   color: #000;
 }
 
-@media (max-width: 640px) {
-  section { padding-top: 56px !important; padding-bottom: 56px !important; padding-left: 18px !important; padding-right: 18px !important; }
+/* ── BRAND WORDMARK ────────────────────────────────────────────── */
+
+.brand-wordmark {
+  font-family: var(--font-display);
+  letter-spacing: 0.04em;
+  font-weight: 400;
 }
-@media (max-width: 390px) {
-  section { padding-top: 48px !important; padding-bottom: 48px !important; padding-left: 16px !important; padding-right: 16px !important; }
+
+/* ── SCROLL PROGRESS BAR ───────────────────────────────────────── */
+
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-light));
+  z-index: 9999;
+  transition: width 0.05s linear;
+  pointer-events: none;
+}
+
+/* ── CUSTOM SCROLLBAR ──────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* ── SECTION SPACING ───────────────────────────────────────────── */
+
+.section-pad {
+  padding: 96px 24px;
+}
+
+@media (min-width: 768px) {
+  .section-pad {
+    padding: 120px 48px;
+  }
+}
+
+@media (max-width: 640px) {
+  .section-pad {
+    padding: 64px 18px;
+  }
+}
+
+/* ── CARD HOVER ────────────────────────────────────────────────── */
+
+.card-hover {
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-hover);
+  box-shadow: 0 8px 32px color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+/* ── FAQ ACCORDION ─────────────────────────────────────────────── */
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.35s ease;
+}
+.faq-answer.open {
+  max-height: 500px;
 }

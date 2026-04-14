@@ -1,213 +1,52 @@
-# Component Catalog
+# Component Catalog — v2
 
-Every reusable section, in the order I'd usually compose them on a page. Each one is a real React component in `src/components/sections/` that you can import and drop into `src/app/page.tsx`.
+All sections are defined inline in `src/app/page.tsx`. To customize a site, you only edit the constants and content arrays at the top of the file.
 
-When a component takes copy, pass it via props — never hard-code business names in the components themselves.
+## Page Sections (in order)
 
----
+| Section | Function | Purpose |
+|---|---|---|
+| `<ScrollProgress />` | `ScrollProgress` | Thin accent-colored progress bar fixed at top of viewport, tracks scroll depth. |
+| `<TopBar />` | `TopBar` | Fixed info strip above nav: phone, address, hours. Hidden on mobile. |
+| `<Nav />` | `Nav` | Sticky nav: brand left, links center, CTA right. Transparent → solid on scroll. Hamburger on mobile. |
+| `<Hero />` | `Hero` | Full-viewport hero with slideshow background, mouse parallax, gradient overlays, tagline pill, h1, sub, two CTAs, bounce scroll indicator. |
+| `<TrustBar />` | `TrustBar` | 3 value prop cards overlapping hero bottom (-mt-16). Trust signals like certifications, warranties, guarantees. |
+| `<About />` | `About` | 2-column split: text left, image right with badge overlay (years in business). Welcoming copy. |
+| `<ServicesSection />` | `ServicesSection` | 6 image-rich cards in 3-col grid. Each has background image, icon overlay, description, "Schedule Service" link. |
+| `<StatsBand />` | `StatsBand` | Full-width section with animated counting numbers (IntersectionObserver + requestAnimationFrame, ease-out cubic). |
+| `<WhyChooseUs />` | `WhyChooseUs` | Image left, checklist right with check icons. Why this business is different. |
+| `<TestimonialsSection />` | `TestimonialsSection` | 3 review cards with 5-star ratings, quotes, names. **Delete from Home() if no real reviews.** |
+| `<FAQSection />` | `FAQSection` | 5-item accordion with smooth height transitions. Great for SEO. |
+| `<ServiceAreaSection />` | `ServiceAreaSection` | 8-city grid with map pin icons + Google Maps link. Critical for local SEO. |
+| `<CtaBanner />` | `CtaBanner` | Full-width accent gradient band with headline, sub, and black CTA button. |
+| `<ContactSection />` | `ContactSection` | 3 info cards (phone/email/address) + hours card. |
+| `<Footer />` | `Footer` | 4-column: brand + tagline, services links, company links, contact info. |
 
-## `<Nav />` — top navigation
-**File:** `src/components/sections/Nav.tsx`
-**Purpose:** Sticky top nav with logo, primary links, and a single CTA button.
-**Props:**
-- `brand: string` — wordmark text
-- `links: { href: string; label: string }[]`
-- `cta: { href: string; label: string }`
-**Mobile behavior:** hides links, keeps logo + CTA, hamburger optional
-**Used by:** every site
+## Utility Components
 
-```tsx
-<Nav
-  brand="PGS"
-  links={[
-    { href: "#services", label: "Services" },
-    { href: "#process", label: "Process" },
-    { href: "#contact", label: "Contact" },
-  ]}
-  cta={{ href: "#contact", label: "Talk to Our Team" }}
-/>
-```
+| Component | File | Purpose |
+|---|---|---|
+| `<FadeIn />` | `components/FadeIn.tsx` | Reusable framer-motion scroll-triggered animation. Supports direction (up/down/left/right/none), delay, duration. Uses `useInView` with `once: true`. |
+| `<SectionHeader />` | inline in `page.tsx` | Reusable tag + h2 + sub pattern for section intros. |
+| `<AnimatedCounter />` | inline in `page.tsx` | Number counter that animates when scrolled into view. Ease-out cubic. |
+| `<FAQItem />` | inline in `page.tsx` | Single accordion item with smooth max-height transition. |
 
----
+## Key Design Features
 
-## `<Hero />` — full-screen hero with mouse parallax
-**File:** `src/components/sections/Hero.tsx`
-**Purpose:** Big tagline, sub-text, dual CTA, parallax background image, optional stat row.
-**Props:**
-- `tag?: string` — small uppercase pill ("WEB DESIGN AGENCY")
-- `title: string | ReactNode` — supports JSX for italic accent words
-- `sub: string`
-- `primaryCta: { href: string; label: string }`
-- `secondaryCta?: { href: string; label: string }`
-- `bgImage: string` — public path or absolute URL
-- `stats?: { value: string; label: string }[]` — up to 3
-**Animations:**
-- gsap.from on title/sub/CTAs (stagger reveal on mount)
-- gsap mouse parallax on bg (`±25px / ±17px`, `power2.out 1.2s`)
-- Touch detection disables parallax
-**Mobile:** title clamps to `clamp(28px, 8vw, 40px)`, parallax off, content justify-end
+- **Scroll progress bar** — thin gradient line at very top
+- **TopBar → Nav stacking** — TopBar fixed at z-60, Nav at z-50 below it, slides to top-0 on scroll
+- **Hero slideshow** — crossfade between images every 5s, all with mouse parallax
+- **Card hover effects** — translateY(-4px) + accent border glow via `.card-hover` CSS class
+- **Scroll-triggered fade-in** — every section uses `<FadeIn>` wrapper
+- **Animated stat counters** — numbers count up with ease-out cubic when visible
+- **Custom scrollbar** — dark theme scrollbar matching the site
 
----
+## Adding a New Section
 
-## `<ServicesGrid />` — N-up service cards
-**File:** `src/components/sections/ServicesGrid.tsx`
-**Purpose:** 3–8 service cards with icon, name, one-line description.
-**Props:**
-- `tag: string` — section label
-- `title: string`
-- `sub?: string`
-- `services: { icon: LucideIcon; name: string; description: string }[]`
-- `columns?: 2 | 3 | 4` (default 3)
-**Mobile:** collapses to 1 col on phones, 2 cols on tablets
-
----
-
-## `<ServicesDual />` — two-column services ("two sides of the same mission")
-**File:** `src/components/sections/ServicesDual.tsx`
-**Purpose:** When a business has two distinct service categories (e.g., "Pre-employment + Injury management" for PGS).
-**Props:**
-- `tag: string`
-- `title: string`
-- `sub?: string`
-- `left: { title: string; services: string[] }`
-- `right: { title: string; services: string[] }`
-**Visual:** vertical divider, accent-bordered headings on each side
-
----
-
-## `<WhyChooseUs />` — 3-up benefits
-**File:** `src/components/sections/WhyChooseUs.tsx`
-**Purpose:** Three reasons to pick this business.
-**Props:**
-- `tag: string`
-- `title: string`
-- `items: { icon: LucideIcon; title: string; body: string }[]` (3–4)
-**Animations:** stagger reveal on scroll into view
-
----
-
-## `<ComparisonTable />` — us vs. competitors
-**File:** `src/components/sections/ComparisonTable.tsx`
-**Purpose:** Highlight differentiators with a check/x table.
-**Props:**
-- `title: string`
-- `competitors: string[]` — column headers (the first is always "Us")
-- `rows: { feature: string; values: (boolean | string)[] }[]`
-**Visual:** "Us" column highlighted in accent, others greyed
-
----
-
-## `<SellBand />` — full-bleed CTA-driven horizontal section
-**File:** `src/components/sections/SellBand.tsx`
-**Purpose:** Big "ready to sell?" or "ready to subscribe?" moment between sections.
-**Props:**
-- `tag: string`
-- `title: string`
-- `bullets: string[]` (3–6)
-- `cta: { href: string; label: string }`
-**Visual:** flex split — text left, bullets+CTA right, full-bleed dark background, top + bottom borders
-
----
-
-## `<PosterSection />` — "at a glance" tall image card
-**File:** `src/components/sections/PosterSection.tsx`
-**Purpose:** Display a tall flyer/menu/services overview as the hero artwork of a section.
-**Props:**
-- `tag: string`
-- `title: string`
-- `sub?: string`
-- `image: string`
-- `alt: string`
-**Visual:** centered image, max-width 880px, rounded 18px, accent-tinted shadow
-
----
-
-## `<Process />` — numbered steps
-**File:** `src/components/sections/Process.tsx`
-**Purpose:** "How it works" — 3–5 numbered steps.
-**Props:**
-- `tag: string`
-- `title: string`
-- `steps: { number: string; title: string; body: string }[]`
-**Visual:** vertical connector line on desktop, accordion on mobile
-
----
-
-## `<Pricing />` — pricing tiers
-**File:** `src/components/sections/Pricing.tsx`
-**Purpose:** 2–3 pricing cards.
-**Props:**
-- `tag: string`
-- `title: string`
-- `tiers: { name: string; price: string; period?: string; description: string; features: string[]; cta: { href: string; label: string }; highlighted?: boolean }[]`
-
----
-
-## `<Testimonials />` — quote cards
-**File:** `src/components/sections/Testimonials.tsx`
-**Purpose:** Real customer quotes (skip if no real ones).
-**Props:**
-- `tag: string`
-- `title: string`
-- `items: { quote: string; name: string; role?: string }[]`
-
----
-
-## `<FAQ />` — accordion
-**File:** `src/components/sections/FAQ.tsx`
-**Purpose:** Common questions with framer-motion accordion behavior.
-**Props:**
-- `tag: string`
-- `title: string`
-- `items: { q: string; a: string }[]`
-
----
-
-## `<DualCta />` — two side-by-side CTA boxes
-**File:** `src/components/sections/DualCta.tsx`
-**Purpose:** "Find a car / Sell a car" style — two equally-weighted next steps.
-**Props:**
-- `left: { title: string; body: string; cta: { href: string; label: string }; image?: string }`
-- `right: { title: string; body: string; cta: { href: string; label: string }; image?: string }`
-
----
-
-## `<ContactForm />` — contact section
-**File:** `src/components/sections/ContactForm.tsx`
-**Purpose:** Name + email + phone + message + submit.
-**Props:**
-- `tag: string`
-- `title: string`
-- `sub?: string`
-- `contactInfo?: { phone?: string; email?: string; address?: string; hours?: string }`
-- `formAction?: string` — POST endpoint (default: just `mailto:`)
-
----
-
-## `<Footer />` — site footer
-**File:** `src/components/sections/Footer.tsx`
-**Purpose:** Logo, links, contact, copyright.
-**Props:**
-- `brand: string`
-- `tagline?: string`
-- `columns: { title: string; links: { href: string; label: string }[] }[]` (max 3)
-- `contact: { phone?: string; email?: string; address?: string }`
-- `social?: { platform: 'instagram' | 'facebook' | 'linkedin' | 'twitter'; href: string }[]`
-**Mobile:** collapses to 1 column
-
----
-
-## `<MagneticButton />` — primitive
-**File:** `src/components/ui/MagneticButton.tsx`
-**Purpose:** Reusable button that drifts toward the cursor on hover. Wrap any link/button.
-**Props:** standard `<button>` props + `intensity?: number` (default 0.35)
-
----
-
-## Magic MCP integration
-
-For premium one-off components (custom hero illustrations, fancy stat dials, animated logos, etc.) call:
-```
-mcp__magic__21st_magic_component_builder
-```
-with a clear prompt of what's needed. Drop the output into `src/components/ui/`. Do **not** use Magic for the standard sections above — those should stay consistent across all sites.
+1. Define the function in `page.tsx` following the existing pattern
+2. Wrap content in a `<section>` with `className="section-pad bg-[var(--bg)]"` or `bg-[var(--surface)]` (alternate)
+3. Use `<FadeIn>` for scroll animations
+4. Use `<SectionHeader>` for the intro if it follows the tag → h2 → sub pattern
+5. Add it to the `Home()` composition at the bottom
+6. Add a row to this catalog
+7. Push the change back to `vexa-website-template` so future builds get it
